@@ -4,77 +4,156 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .flyout-menu {
+            opacity: 0;
+            transform: translateY(-1rem);
+            transition: opacity 200ms ease-out, transform 200ms ease-out;
+            pointer-events: none;
+        }
+
+        .flyout-menu.active {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        .flyout-menu .max-h-36 {
+            max-height: none;
+        }
+    </style>
 </head>
 <body>
   <div class="flex flex-col">
     <div class="flex items-center mb-5">
       <div class="mr-2">
-        
-        <img src="logo.png" alt="Logo" class="h-9">
-        
+        <img src="logo.png" alt="Logo" class="h-11">
       </div>
-        <h1 class="text-2xl font-sheriff">My Website</h1>
+      <h1 class="text-2xl font-sheriff">My Website</h1>
     </div>
   
-    <div class ="container px-15 mb-4">
+    <div class="container px-15 mb-4">
       <div class="cols-5 gap-10 flex justify-center">
         <div>
-          
           <div class="h-4 w-20"></div>
         </div>
-        
 
         <div class="relative">
-          <button type="button" class="inline-flex items-center gap-x-1 text-md font-semibold leading-6 text-gray-900" aria-expanded="false">
+          <button type="button" class="inline-flex items-center gap-x-1 text-md font-semibold leading-6 text-gray-900" aria-expanded="false" onclick="toggleFlyoutMenu('food-supply-menu')">
             <span>Food Supply</span>
             <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
               <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/>
             </svg>
           </button>
+          <div class="absolute left-1/2 z-10 mt-5 flex w-screen max-w-max -translate-x-1/2 px-4 flyout-menu" id="food-supply-menu">
+            <div class="w-screen max-w-md flex-auto overflow-hidden rounded-3xl bg-white text-sm leading-6 shadow-lg ring-1 ring-gray-900/5">
+              <div class="p-4">
+                <div class="group relative flex gap-x-6 rounded-lg p-4 hover:bg-gray-50">
+                  <div>
+                    <button type="button" class="text-md font-semibold leading-6 text-gray-900" onmouseenter="showSubMenu('dried-products-menu')" onmouseleave="hideSubMenu('dried-products-menu')">
+                      Dried Products
+                      <span class="absolute inset-0"></span>
+                    </button>
+                    <div class="pl-4 max-h-36 overflow-y-auto" id="dried-products-menu" style="display: none;" onmouseenter="showSubMenu('dried-products-menu')" onmouseleave="hideSubMenu('dried-products-menu')">
+                      <p class="mt-1 text-gray-600">Raisins</p>
+                      <p class="mt-1 text-gray-600">Sultanas</p>
+                      <p class="mt-1 text-gray-600">Natural Apricots</p>
+                      <p class="mt-1 text-gray-600">Dates</p>
+                      <p class="mt-1 text-gray-600">Mixed Fruits</p>
+                      <p class="mt-1 text-gray-600">Hazelnuts</p>
+                      <p class="mt-1 text-gray-600">Sun Dried Tomatoes</p>
+                      <p class="mt-1 text-gray-600">Semi Dried Tomatoes</p>
+                      <p class="mt-1 text-gray-600">Diced Figs</p>
+                      <p class="mt-1 text-gray-600">Diced Dates</p>
+                      <p class="mt-1 text-gray-600">Diced Prunes</p>
+                      <p class="mt-1 text-gray-600">Mulberries</p>
+                      <p class="mt-1 text-gray-600">Apples</p>
+                      <p class="mt-1 text-gray-600">Plums</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="group relative flex gap-x-6 rounded-lg p-4 hover:bg-gray-50">
+                  <div>
+                    <button type="button" class="text-md font-semibold leading-6 text-gray-900" onmouseenter="showSubMenu('frozen-products-menu')" onmouseleave="hideSubMenu('frozen-products-menu')">
+                      Frozen Products
+                      <span class="absolute inset-0"></span>
+                    </button>
+                    <div class="pl-4 max-h-36 overflow-y-auto" id="frozen-products-menu" style="display: none;" onmouseenter="showSubMenu('frozen-products-menu')" onmouseleave="hideSubMenu('frozen-products-menu')">
+                      <p class="mt-1 text-gray-600">Frozen Vegetables</p>
+                      <p class="mt-1 text-gray-600">Frozen Fruits</p>
+                      <p class="mt-1 text-gray-600">Frozen Seafood</p>
+                      <p class="mt-1 text-gray-600">Frozen Desserts</p>
+                      <p class="mt-1 text-gray-600">Other Frozen Items</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+        
 
         <div class="relative">
-          <button type="button" class="inline-flex items-center gap-x-1 text-md font-semibold leading-6 text-gray-900" aria-expanded="false">
+          <button type="button" class="inline-flex items-center gap-x-1 text-md font-semibold leading-6 text-gray-900" aria-expanded="false" onclick="toggleFlyoutMenu('machiner-supply-menu')">
             <span>Machinery Supply</span>
             <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
               <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/>
             </svg>
           </button>
+          <div class="absolute left-1/2 z-10 mt-5 flex w-screen max-w-max -translate-x-1/2 px-4 flyout-menu" id="machiner-supply-menu">
+            <div class="w-screen max-w-md flex-auto overflow-hidden rounded-3xl bg-white text-sm leading-6 shadow-lg ring-1 ring-gray-900/5">
+              <div class="p-4">
+                <div class="group relative flex gap-x-6 rounded-lg p-4 hover:bg-gray-50">
+                  <div>
+                    
+                      Product1
+                      <span class="absolute inset-0"></span>
+                    
+                    <p class="mt-1 text-gray-600">Get a better understanding of your traffic</p>
+                  </div>
+                </div>
+                <div class="group relative flex gap-x-6 rounded-lg p-4 hover:bg-gray-50">
+                  <div>
+                      Product2
+                      <span class="absolute inset-0"></span>
+                    
+                    <p class="mt-1 text-gray-600">Get a better understanding of your traffic</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div class="relative">
-          <button type="button" class="inline-flex items-center gap-x-1 text-md font-semibold leading-6 text-gray-900" aria-expanded="false">
-            <span>Raw Material and Additives Supply</span>
-            <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-              <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/>
-            </svg>
-          </button>
-        </div>
-
-        <div class="relative">
-          <button type="button" class="inline-flex items-center gap-x-1 text-md font-semibold leading-6 text-gray-900" aria-expanded="false">
-            <span>Audit and Consultancy</span>
-            <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-              <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/>
-            </svg>
-          </button>
-        </div>
-
-        <div class="relative">
-          <button type="button" class="inline-flex items-center gap-x-1 text-md font-semibold leading-6 text-gray-900" aria-expanded="false">
-            <span>Contact</span>
-            <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-              <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/>
-            </svg>
-          </button>
-        </div>
       </div>
-      <div class="w-full h-1 bg-indigo-500 "></div>
-      
-      
-      
     </div>
   </div>
-  
+
+  <script>
+    let activeMenu = null;
+
+    function toggleFlyoutMenu(menuId) {
+      const menu = document.getElementById(menuId);
+
+      if (activeMenu && activeMenu !== menu) {
+        activeMenu.classList.remove('active');
+      }
+
+      menu.classList.toggle('active');
+      activeMenu = menu.classList.contains('active') ? menu : null;
+    }
+    
+    function showSubMenu(menuId) {
+      const subMenu = document.getElementById(menuId);
+      subMenu.style.display = 'block';
+      subMenu.classList.add('max-h-36');
+    }
+    
+
+    function hideSubMenu(menuId) {
+      const subMenu = document.getElementById(menuId);
+      subMenu.style.display = 'none';
+    }
+  </script>
 </body>
 </html>
